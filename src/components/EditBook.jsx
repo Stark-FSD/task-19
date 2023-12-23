@@ -1,20 +1,20 @@
 import React,{useState,useEffect} from 'react'
 import { Button, TextField } from '@mui/material'
-import { useNavigate ,useParams} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 
 import { API_book } from '../Global'
 
 
 function EditBook() {
-    const { bookid } = useParams(); 
+    //const { bookid } = useParams(); 
    
     const [book, setBook] = useState(null)
  
 
     //fetching product details from fetch before editing to set in input fields
      useEffect(()=>{
-       axios.get(`${API_book}/${bookid}`)
+       axios.get(`${API_book}`)
        .then((response)=>setBook(response.data))
       },[]) //call only once due to empty dependency
    

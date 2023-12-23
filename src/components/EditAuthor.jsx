@@ -1,20 +1,20 @@
 import React,{useState,useEffect} from 'react'
 import { Button, TextField } from '@mui/material'
-import { useNavigate ,useParams} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import axios from 'axios'
-import { API_author, API_book } from '../Global'
+import { API_author } from '../Global'
 
 
 
 function EditAuthor() {
-    const { authorid } = useParams(); 
+    //const { authorid } = useParams(); 
    
     const [author, setAuthor] = useState(null)
  
 
     //fetching product details from fetch before editing to set in input fields
      useEffect(()=>{
-       axios.get(`${API_author}/${authorid}`)
+       axios.get(`${API_author}`)
        .then((response)=>setAuthor(response.data))
       },[]) //call only once due to empty dependency
    

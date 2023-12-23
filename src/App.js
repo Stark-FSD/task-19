@@ -1,24 +1,54 @@
-import logo from './logo.svg';
 import './App.css';
+import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
+import { Link, Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
+import Authors from './components/Authors';
+import Books from './components/Books';
+import AddAuthor from './components/AddAuthor';
+import AddBook from './components/AddBook';
+import EditBook from './components/EditBook';
+import EditAuthor from './components/EditAuthor';
 
 function App() {
   return (
+    <>
+    <h1 style={{color:"#Black"}}>Library Management System</h1>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+<div className="side-bar">
+   
+  <Sidebar>
+  <Menu
+   menuItemStyles={{
+    button: ({ level, active, disabled }) => {
+      if (level === 0)
+        return {
+          color: disabled ? '#Black' : '#Black',
+          backgroundColor: active ? '#eecef9' : undefined,
+        };
+    },
+  }}
+  >
+    <MenuItem component={<Link to="/" />}> Home</MenuItem>
+    <MenuItem component={<Link to="/addbook" />}> Add Books</MenuItem>
+    <MenuItem component={<Link to="/addauthor" />}> Add Authors</MenuItem>
+    <MenuItem component={<Link to="/books" />}> Books</MenuItem>
+    <MenuItem component={<Link to="/authors" />}> Authors</MenuItem>
+  </Menu>
+</Sidebar>
+</div>
+<Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/addbook" element={<AddBook />} />
+    <Route path="/addauthor" element={<AddAuthor />} />
+    <Route path="/books" element={<Books />} />
+    <Route path="/authors" element={<Authors />} />
+    <Route path="/books/edit/:bookid" element={<EditBook />} />
+    <Route path="/authors/edit/:authorid" element={<EditAuthor />} />
+</Routes>
+
     </div>
+    </>
   );
 }
 
